@@ -9,8 +9,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
-app.use(cors());
-
+app.use(cors({
+  origin: 'http://localhost:5173', // ✅ exact origin, no wildcard
+  credentials: true,               // ✅ required for cookies
+}));
 app.use(express.urlencoded({ extended: true }));
 
 connectDB();
